@@ -1,0 +1,31 @@
+name: Auto Post Instagram
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+          pip install pillow
+          pip install python-dotenv
+
+      - name: Run script
+        env:
+          TOKEN_DE_ACESSO: ${{ secrets.TOKEN_DE_ACESSO }}
+          ID_DA_PAGINA: ${{ secrets.ID_DA_PAGINA }}
+          URL_DE_UPLOAD_NA_NUVEM: ${{ secrets.URL_DE_UPLOAD_NA_NUVEM }}
+          PREDEF_SET_UPLOAD: ${{ secrets.PREDEF_SET_UPLOAD }}
+        run: python create_and_publish.py
