@@ -19,9 +19,13 @@ GENERATED_DIR = "generated_images"
 FONTS_DIR = "fonts"
 FONT_PATH = os.path.join(FONTS_DIR, "PlayfairDisplay-Italic.ttf")
 
+# ✅ Caminho absoluto do arquivo frases.txt
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+FRASES_PATH = os.path.join(BASE_PATH, "frases.txt")
+
 # Escolhe uma frase do arquivo frases.txt
 def pick_random_phrase():
-    with open("frases.txt", "r", encoding="utf-8") as f:
+    with open(FRASES_PATH, "r", encoding="utf-8") as f:
         frases = f.readlines()
     return random.choice(frases).strip()
 
